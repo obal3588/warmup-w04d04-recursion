@@ -16,14 +16,29 @@ function fibonacci(){
     // For this function, the first two fibonacci numbers are 1 and 1
 }
 
-function coinFlips(){
-    // This function returns an array of all possible outcomes from flipping a coin N times.
-    // Input type: Integer
-    // For example, coinFlips(2) would return the following:
-    // ["HH", "HT", "TH", "TT"]
-    // H stands for Heads and T stands for tails
-    // Represent the two outcomes of each flip as "H" or "T"
+function coinFlips(n) {
+
+  if (n > 1) {
+    const branch = coinFlips(n - 1);
+    const root = ["H", "T"];
+    const outcome = [];
+    for (let index = 0; index < root.length; index++) {
+      const element = root[index];
+      for (let j = 0; j < branch.length; j++) {
+        const item = branch[j];
+        const newItem = item + element;
+        outcome.push(newItem);
+      }
+    }
+    console.log(outcome);
+    return outcome;
+  } else {
+    return ["H", "T"];
+  }
 }
+
+coinFlips(5);
+
 
 function letterCombinations(){
     // This function returns an array of all combinations of the given letters
